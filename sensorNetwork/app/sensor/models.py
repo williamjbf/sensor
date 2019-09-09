@@ -32,20 +32,11 @@ class Board(models.Model):
         verbose_name_plural = 'Placas'
 
 
-class Type(models.Model):
-    typeDate = models.CharField(max_length=10, verbose_name='Tipo')
-    unity = models.CharField(max_length=10, verbose_name='Unidade')
-
-    class Meta:
-        verbose_name = 'Tipo'
-        verbose_name_plural = 'Tipos'
-
-
 class Sensor(models.Model):
     description = models.CharField(max_length=255, default= '', verbose_name='Descrição', blank=True)
     board = models.ForeignKey(Board, on_delete=models.PROTECT)
-    type_sensor = models.ForeignKey(Type, on_delete=models.PROTECT)
-
+    typeDate = models.CharField(max_length=100, verbose_name='Tipo',blank=True)
+    unity = models.CharField(max_length=10, verbose_name='Unidade',blank=True)
     class Meta:
         verbose_name = 'Sensor'
         verbose_name_plural = 'Sensores'
