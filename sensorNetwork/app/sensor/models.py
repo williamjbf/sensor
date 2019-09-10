@@ -3,7 +3,6 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser, Permission, User
 
-
 class User(AbstractUser):
 
     user_permissions = models.ManyToManyField(

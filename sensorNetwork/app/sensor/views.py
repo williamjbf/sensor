@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from .models import *
 
 # Create your views here.
-def inicial(request):
-    return render(request, 'HTML/inicial.html', {})
+class sensores(DetailView):
+    model = model.Sensor
+    template_name = "template/sensores.html"
