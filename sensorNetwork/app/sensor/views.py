@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 # Create your views here.
-def post_list(request):
-    return render(request, 'templates/inicial.html', {})
+def inicial(request):
+    return render(request, 'HTML/inicial.html', {})
