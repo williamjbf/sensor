@@ -44,7 +44,7 @@ class Sensor(models.Model):
 class Data(models.Model):
     value = models.CharField(max_length=100,verbose_name='Valor')
     date = models.DateField(max_length=100, verbose_name='Data')
-    sensor = models.ForeignKey(Sensor, on_delete=models.PROTECT, blank=True)
+    sensor = models.ForeignKey(Sensor, on_delete=models.PROTECT, blank=True, related_name='data')
 
     class Meta:
         verbose_name = 'Dado do Sensor'

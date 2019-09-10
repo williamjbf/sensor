@@ -19,6 +19,5 @@ from app.sensor import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inicial/', views.inicial, name='inicial'),
-    path('sensores/', views.sensores, name='sensores')
+    path('sensores/', views.sensores.as_view(), name='sensores')
 ]
