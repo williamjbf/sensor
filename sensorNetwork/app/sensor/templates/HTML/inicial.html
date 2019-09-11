@@ -100,13 +100,6 @@
           <!-- Search in Page-->
           <form action="#">
             <div class="input-group input-group-seamless ml-3">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fas fa-search"></i>
-                </div>
-              </div>
-              <input class="navbar-search form-control" type="text" placeholder="Pesquisar por alguma coisa..."
-                aria-label="Search">
             </div>
           </form>
           <!-- End Search in Page-->
@@ -121,7 +114,7 @@
           <!-- Small Stats Blocks -->
           <div class="row">
 
-              {% for sensor in object_list %}
+              {% for sensor in sensors %}
               <div class="col-lg col-md-6 col-sm-6 mb-4">
                 <div class="stats-small stats-small--1 card card-small">
                   <div class="card-body p-0 d-flex">
@@ -143,7 +136,7 @@
               {% endfor %}
           </div>
           <div class="col text-right view-report">
-            <a href='{% static "sensores" %}'>Ver todos &rarr;</a>
+            <a href="{% url 'sensores' %}">Ver todos &rarr;</a>
           </div>
           <!-- End Small Stats Blocks -->
           <div class="row">
@@ -153,41 +146,20 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 mb-12">
               <div class="card card-small">
-                <div class="card-header border-bottom">
-                  <h6 class="m-0">Top Referrals</h6>
-                </div>
                 <div class="card-body p-0">
                   <ul class="list-group list-group-small list-group-flush">
+                    {% for environment in environments %}
                     <li class="list-group-item d-flex px-3">
-                      <span class="text-semibold text-fiord-blue">Sala 05</span>
-                      <span class="ml-auto text-right text-semibold text-reagent-gray">2 sensores</span>
+                      <span class="text-semibold text-fiord-blue">{{ environment.name }}</span>
+                      <span class="ml-auto text-right text-semibold text-reagent-gray">{{ environment.board.count }} placas</span>
                     </li>
-                    <li class="list-group-item d-flex px-3">
-                      <span class="text-semibold text-fiord-blue">Stack Overflow</span>
-                      <span class="ml-auto text-right text-semibold text-reagent-gray">11,201</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                      <span class="text-semibold text-fiord-blue">Hacker News</span>
-                      <span class="ml-auto text-right text-semibold text-reagent-gray">9,291</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                      <span class="text-semibold text-fiord-blue">Reddit</span>
-                      <span class="ml-auto text-right text-semibold text-reagent-gray">8,281</span>
-                    </li>
+                    {% endfor %}
                   </ul>
                 </div>
                 <div class="card-footer border-top">
                   <div class="row">
-                    <div class="col">
-                      <select class="custom-select custom-select-sm">
-                        <option selected>Last Week</option>
-                        <option value="1">Today</option>
-                        <option value="2">Last Month</option>
-                        <option value="3">Last Year</option>
-                      </select>
-                    </div>
                     <div class="col text-right view-report">
-                      <a href='{% static "ambientes" %}'>Ver todos &rarr;</a>
+                      <a href="{% url 'ambientes' %}">Ver todos &rarr;</a>
                     </div>
                   </div>
                 </div>
@@ -202,41 +174,20 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 mb-12">
               <div class="card card-small">
-                <div class="card-header border-bottom">
-                  <h6 class="m-0">Top Referrals</h6>
-                </div>
                 <div class="card-body p-0">
                   <ul class="list-group list-group-small list-group-flush">
-                    <li class="list-group-item d-flex px-3">
-                      <span class="text-semibold text-fiord-blue">Sala 05</span>
-                      <span class="ml-auto text-right text-semibold text-reagent-gray">2 sensores</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                      <span class="text-semibold text-fiord-blue">Stack Overflow</span>
-                      <span class="ml-auto text-right text-semibold text-reagent-gray">11,201</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                      <span class="text-semibold text-fiord-blue">Hacker News</span>
-                      <span class="ml-auto text-right text-semibold text-reagent-gray">9,291</span>
-                    </li>
-                    <li class="list-group-item d-flex px-3">
-                      <span class="text-semibold text-fiord-blue">Reddit</span>
-                      <span class="ml-auto text-right text-semibold text-reagent-gray">8,281</span>
-                    </li>
+                      {% for board in boards %}
+                      <li class="list-group-item d-flex px-3">
+                        <span class="text-semibold text-fiord-blue">{{ board.name }}</span>
+                        <span class="ml-auto text-right text-semibold text-reagent-gray">{{ board.sensor.count }} sensores</span>
+                      </li>
+                      {% endfor %}
                   </ul>
                 </div>
                 <div class="card-footer border-top">
                   <div class="row">
-                    <div class="col">
-                      <select class="custom-select custom-select-sm">
-                        <option selected>Last Week</option>
-                        <option value="1">Today</option>
-                        <option value="2">Last Month</option>
-                        <option value="3">Last Year</option>
-                      </select>
-                    </div>
                     <div class="col text-right view-report">
-                      <a href='{% static "placas.html" %}'>Ver todas &rarr;</a>
+                      <a href="{% url 'placas' %}">Ver todas &rarr;</a>
                     </div>
                   </div>
                 </div>
@@ -246,23 +197,6 @@
           </div>
         </div>
         <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Blog</a>
-            </li>
-          </ul>
           <span class="copyright ml-auto my-auto mr-2">Copyright © 2018
             <a href="https://designrevision.com" rel="nofollow">DesignRevision</a>
           </span>

@@ -19,7 +19,7 @@ from app.sensor import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inicial/', views.Inicial.as_view(), name='inicial'),
+    path('', views.Inicial.as_view(), name='inicial'),
     path('sensores/', views.sensores.as_view(), name='sensores'),
     path('criar_sensor/', views.criar_sensor.as_view(), name='criar_sensor'),
     path('ambientes/', views.Ambientes.as_view(), name ='ambientes'),

@@ -30,13 +30,19 @@ class criar_sensor(CreateView):
 
 
 class Inicial(TemplateView):
-    model = models
     success_url = reverse_lazy('inicial')
     template_name = 'HTML/inicial.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['environments'] = models.Environment.objects.all()
+        context['boards'] = models.Board.objects.all()
+        context['sensors'] = models.Sensor.objects.all()
+        return context
+
 
 class Ambientes(ListView):
-    model = models.Enviroment
+    model = models.Environment
     template_name = 'HTML/ambientes.html'
 
 
@@ -44,16 +50,21 @@ class Placas(ListView):
     model = models.Board
     template_name = 'HTML/placas.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['environment'] = models.Environment.objects.all()
+        return context
+
 
 class Criar_ambiente(CreateView):
-    model = models.Enviroment
+    model = models.Environment
     fields = ['name', 'description']
     success_url = reverse_lazy('ambientes')
 
 
 class Criar_placa(CreateView):
     model = models.Board
-    fields = ['name', 'description','enviroment']
+    fields = ['name', 'description','environment']
     success_url = reverse_lazy('placas')
 
 class DataSensor(CreateView):

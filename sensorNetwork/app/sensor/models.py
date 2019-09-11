@@ -18,7 +18,7 @@ class User(AbstractUser):
         verbose_name_plural = 'Usuarios'
 
 
-class Enviroment(models.Model):
+class Environment(models.Model):
     name = models.CharField(max_length=100, verbose_name='Nome')
     description = models.CharField(max_length=200, default= '', verbose_name='Descrição', blank=True)
 
@@ -33,7 +33,7 @@ class Enviroment(models.Model):
 class Board(models.Model):
     name = models.CharField(max_length=30, verbose_name='Placa')
     description = models.CharField(max_length=250, default= '', verbose_name='Descrição', blank=True)
-    enviroment = models.ForeignKey(Enviroment, on_delete=models.PROTECT,null=True, blank=True, related_name='boards')
+    environment = models.ForeignKey(Environment, on_delete=models.PROTECT,null=True, blank=True, related_name='board')
     def __str__(self):
         return self.name
 

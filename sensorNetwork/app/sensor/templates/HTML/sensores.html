@@ -101,13 +101,6 @@
           <!-- Search in Page-->
           <form action="#">
             <div class="input-group input-group-seamless ml-3">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fas fa-search"></i>
-                </div>
-              </div>
-              <input class="navbar-search form-control" type="text" placeholder="Pesquisar por alguma coisa..."
-                aria-label="Search">
             </div>
           </form>
           <!-- End Search in Page-->
@@ -132,20 +125,23 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                       <div class="card card-small card-post card-post--1">
                         <div class="card-post__image"
-                          style="background-image: url('{% static 'images/content-management/minisensor.jpeg' %}');">
+                          style="background-image: url('{% static 'images/content-management/minisensor.jpg' %}');">
                         </div>
                         <div class="card-body">
                           <form method="POST" action="{% url 'criar_sensor' %}">{% csrf_token %}
                             <div class="form-group">
                               <select name="board" class="form-control">
-                              <option value="">Nenhuma sala</option>
-                              {% for board in boards %}
+                                <option value="">Nenhuma sala</option>
+                                {% for board in boards %}
                                 <option value="{{ board.pk }}">{{ board.name }}</option>
-                              {% endfor %}
+                                {% endfor %}
                               </select>
-                              <input type="text" name="description" class="form-control" id="inputAddSensorDesc" placeholder="descrição">
-                              <input type="text" name="typeDate" class="form-control" id="inputAddType" class="form-control" placeholder="tipo">
-                              <input type="text" name="unity" class="form-control" id="inputAddUnity" class="form-control" placeholder="unidade">
+                              <input type="text" name="description" class="form-control" id="inputAddSensorDesc"
+                                placeholder="descrição">
+                              <input type="text" name="typeDate" class="form-control" id="inputAddType"
+                                class="form-control" placeholder="tipo">
+                              <input type="text" name="unity" class="form-control" id="inputAddUnity"
+                                class="form-control" placeholder="unidade">
                               <input type="submit" class="form-control" id="inputAddBoardSubmit">
                             </div>
                           </form>
@@ -158,33 +154,26 @@
                   <!-- Default Light Table -->
                   <div class="row">
                     <div class="col">
-                      <div class="card card-small mb-4 ">
-                        <div class="card-body p-0 pb-3 text-center">
-
-
-                          <div class="row">
-                            {% for sensor in object_list %}
-                            <div class="col-lg col-md-6 col-sm-6 mb-4">
-                              <div class="stats-small stats-small--1 card card-small">
-                                <div class="card-body p-0 d-flex">
-                                  <div class="d-flex flex-column m-auto">
-                                    <div class="stats-small__data text-center">
-                                      <span class="stats-small__label text-uppercase">{{ sensor.description }}</span>
-                                      <h6 class="stats-small__value count my-3">{{ sensor.data.last.value }}
-                                        {{ sensor.unity }}</h6>
-                                    </div>
-                                    <div class="stats-small__data">
-                                      <span
-                                        class="stats-small__percentage ">{{sensor.board.name}}</span>
-                                    </div>
+                        <div class="row">
+                          {% for sensor in object_list %}
+                          <div class="col-lg col-md-6 col-sm-6 mb-4">
+                            <div class="stats-small stats-small--1 card card-small">
+                              <div class="card-body p-0 d-flex">
+                                <div class="d-flex flex-column m-auto">
+                                  <div class="stats-small__data text-center">
+                                    <span class="stats-small__label text-uppercase">{{ sensor.description }}</span>
+                                    <h6 class="stats-small__value count my-3">{{ sensor.data.last.value }}
+                                      {{ sensor.unity }}</h6>
                                   </div>
-                                  <canvas height="120" class="blog-overview-stats-small-1"></canvas>
+                                  <div class="stats-small__data">
+                                    <span class="stats-small__percentage ">{{sensor.board.name}}</span>
+                                  </div>
                                 </div>
+                                <canvas height="120" class="blog-overview-stats-small-1"></canvas>
                               </div>
                             </div>
-                            {% endfor %}
                           </div>
-                        </div>
+                          {% endfor %}
                       </div>
                     </div>
                   </div>
@@ -195,23 +184,6 @@
             </div>
           </div>
           <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
-            <ul class="nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Blog</a>
-              </li>
-            </ul>
             <span class="copyright ml-auto my-auto mr-2">Copyright © 2018
               <a href="https://designrevision.com" rel="nofollow">DesignRevision</a>
             </span>

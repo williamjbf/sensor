@@ -100,13 +100,6 @@
           <!-- Search in Page-->
           <form action="#">
             <div class="input-group input-group-seamless ml-3">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="fas fa-search"></i>
-                </div>
-              </div>
-              <input class="navbar-search form-control" type="text" placeholder="Pesquisar por alguma coisa..."
-                aria-label="Search">
             </div>
           </form>
           <!-- End Search in Page-->
@@ -161,16 +154,14 @@
                               <th scope="col" class="border-0">Nome</th>
                               <th scope="col" class="border-0">Descrição</th>
                               <th scope="col" class="border-0">Total de placas</th>
-                              <th scope="col" class="border-0">Total de sensores</th>
                             </tr>
                           </thead>
                           <tbody>
-                            {% for envorinment in object_list %}
+                            {% for environment in object_list %}
                             <tr>
-                              <td>{{ envorinment.name }}</td>
-                              <td>{{ envorinment.description }}</td>
-                              <td>{{ envorinment.board|length  }}</td>
-                              <td>{{ envorinment.sensor|length  }}</td>
+                              <td>{{ environment.name }}</td>
+                              <td>{{ environment.description }}</td>
+                              <td>{{ environment.board.count }}</td>
                             </tr>
                             {% endfor %}
                           </tbody>
@@ -186,23 +177,6 @@
           </div>
         </div>
         <footer class="main-footer d-flex p-2 px-3 bg-white border-top">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Blog</a>
-            </li>
-          </ul>
           <span class="copyright ml-auto my-auto mr-2">Copyright © 2018
             <a href="https://designrevision.com" rel="nofollow">DesignRevision</a>
           </span>
